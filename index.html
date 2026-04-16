@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Personen-Übersicht -->
+        <div id="person-overview" class="view active">
+            <h1>Wähle eine Person</h1>
+            <div id="person-buttons" class="button-container">
+                <!-- Buttons werden von JS generiert -->
+            </div>
+        </div>
+
+        <!-- Workout-Übersicht -->
+        <div id="workout-overview" class="view">
+            <h1>Wähle ein Workout für <span id="selected-person"></span></h1>
+            <div id="workout-buttons" class="button-container">
+                <!-- Buttons werden von JS generiert -->
+            </div>
+            <button id="back-to-persons">Zurück zu Personen</button>
+        </div>
+
+        <!-- Workout-Spiel -->
+        <div id="workout-game" class="view">
+            <div class="game-layout">
+                <!-- Oben: 25% Platzhalter -->
+                <div class="top-section">
+                    <div id="placeholder"><span id="selected-workout"></span></div>
+                    <div id="total-time">Gesamtzeit: 00:00</div>
+                </div>
+
+                <!-- Mitte: 35% Timer -->
+                <div class="middle-section">
+                    <div id="progress-bar"></div>
+                    <div id="phase-controls">
+                        <button id="prev-phase-btn">Zurück</button>
+                        <div id="phase-name">Aufwärmen</div>
+                        <button id="next-phase-btn">Vor</button>
+                    </div>
+                    <div id="timer-container" data-scrollable="true">
+                        <svg id="timer-circle" width="280" height="280" viewBox="0 0 280 280">
+                            <circle cx="140" cy="140" r="120" stroke="#ddd" stroke-width="12" fill="none"/>
+                            <circle id="progress-circle" cx="140" cy="140" r="120" stroke="#00caee" stroke-width="12" fill="none" stroke-dasharray="754" stroke-dashoffset="0" transform="rotate(90 140 140)"/>
+                        </svg>
+                        <div id="timer-display" class="time-display">00:00</div>
+                        <button id="toggle-btn">▶</button>
+                    </div>
+                </div>
+
+                <!-- Unten: 40% -->
+                <div class="bottom-section">
+                    <div id="motivation"></div>
+                    <button id="back-to-workouts">Zurück zu Workouts</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="motivations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
