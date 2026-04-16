@@ -625,7 +625,7 @@ function playTickSound(isLast) {
     gainNode.connect(audioCtx.destination);
     oscillator.type = 'sine';
     oscillator.frequency.value = isLast ? 880 : 440;
-    gainNode.gain.value = 0.3;
+    gainNode.gain.value = 0.5;
     oscillator.start();
     oscillator.stop(audioCtx.currentTime + 0.12);
 }
