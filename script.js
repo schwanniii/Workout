@@ -120,32 +120,16 @@ const data = {
         },
         "M": {
             workouts: {
-                "cardio": {
+                "Dein Workout 🎀": {
                     einheiten: [
-                        { name: "Aufwärmen", dauer: 240 },
+                        { name: "Aufwärmen", dauer: 300 },
+
                         { name: "Übung1", dauer: 240 },
                         { name: "Pause", dauer: 30 },
-                        { name: "Übung1", dauer: 240 },
-                        { name: "Pause", dauer: 30 },
-                        { name: "Übung1", dauer: 240 },
-                        { name: "Pause", dauer: 30 },
-                        { name: "Übung1", dauer: 240 },
-                        { name: "Pause", dauer: 30 },
-                        { name: "Übung1", dauer: 240 },
-                        { name: "Lange Pause", dauer: 120 }
+
+                        { name: "Cooldown", dauer: 300 }
                     ]
                 },
-                "yoga": {
-                    einheiten: [
-                        { name: "Aufwärmen", dauer: 180 },
-                        { name: "Übung1", dauer: 300 },
-                        { name: "Pause", dauer: 45 },
-                        { name: "Übung1", dauer: 300 },
-                        { name: "Pause", dauer: 45 },
-                        { name: "Übung1", dauer: 300 },
-                        { name: "Lange Pause", dauer: 150 }
-                    ]
-                }
             }
         }
     }
@@ -162,6 +146,7 @@ let totalTime = 0;
 let phases = [];
 let touchStartY = null;
 let wakeLock = null;
+let isAutoAdvance = false;
 
 // DOM Elemente
 const personOverview = document.getElementById('person-overview');
@@ -375,6 +360,9 @@ function toggleStartStop() {
     } else {
         startTimer();
     }
+    if (navigator.vibrate) {
+        navigator.vibrate(500);
+    }
 }
 
 function startTimer() {
@@ -397,6 +385,7 @@ function startTimer() {
             updateProgress();
             if (timeLeft <= 0) {
                 playTickSound(true); // Spiele den Ton zuerst
+                isAutoAdvance = true;
                 nextPhase();
             } else if (timeLeft <= 4) {
                 playTickSound(false);
@@ -428,6 +417,10 @@ function nextPhase() {
         updateProgress();
         updateProgressBar();
         saveProgress();
+        if (isAutoAdvance) {
+            startTimer();
+            isAutoAdvance = false;
+        }
     } else {
         // Ende des Workouts - bleibe bei der letzten Einheit
         currentUnitIndex = einheiten.length;
@@ -444,6 +437,10 @@ function nextPhase() {
         }
         // Optional: Zeige eine Nachricht oder ändere den Namen
         phaseNameLabel.textContent = 'Workout beendet!';
+        if (navigator.vibrate) {
+            navigator.vibrate(500);
+        }
+        isAutoAdvance = false;
     }
 }
 
@@ -515,6 +512,7 @@ function updateNavigationButtons() {
 function jumpToNextPhase() {
     const einheiten = data.personen[currentPerson].workouts[currentWorkout].einheiten;
     if (!currentWorkout || currentUnitIndex >= einheiten.length - 1) return;
+    stopTimer();
     currentUnitIndex++;
     setUnitDuration();
     updateDisplay();
@@ -525,6 +523,7 @@ function jumpToNextPhase() {
 
 function jumpToPreviousPhase() {
     if (!currentWorkout || currentUnitIndex === 0) return;
+    stopTimer();
     currentUnitIndex--;
     setUnitDuration();
     updateDisplay();
@@ -566,7 +565,7 @@ function onTimerTouchMove(event) {
         adjustTime(step);
         touchStartY = currentY;
         if (navigator.vibrate) {
-            navigator.vibrate(50);
+            navigator.vibrate(500);
         }
         event.preventDefault();
     }
@@ -587,7 +586,7 @@ function playTickSound(isLast) {
     gainNode.connect(audioCtx.destination);
     oscillator.type = 'sine';
     oscillator.frequency.value = isLast ? 880 : 440;
-    gainNode.gain.value = 0.1;
+    gainNode.gain.value = 0.3;
     oscillator.start();
     oscillator.stop(audioCtx.currentTime + 0.12);
 }

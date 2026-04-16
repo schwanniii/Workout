@@ -68,7 +68,7 @@ button:disabled {
 }
 
 .top-section {
-    flex: 0 0 18%;
+    flex: 0 0 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -219,10 +219,10 @@ button:disabled {
 }
 
 .bottom-section {
-    flex: 0 0 25%;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     justify-content: center;
     align-items: center;
     background-color: #f8f9fa;
@@ -237,7 +237,7 @@ button:disabled {
     font-size: 18px;
     color: #333;
     text-align: center;
-    margin-bottom: 16px;
+    margin: 0 0 10px 0;
     max-width: 90%;
     line-height: 1.4;
 }
