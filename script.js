@@ -360,9 +360,6 @@ function toggleStartStop() {
     } else {
         startTimer();
     }
-    if (navigator.vibrate) {
-        navigator.vibrate(500);
-    }
 }
 
 function startTimer() {
@@ -437,9 +434,6 @@ function nextPhase() {
         }
         // Optional: Zeige eine Nachricht oder ändere den Namen
         phaseNameLabel.textContent = 'Workout beendet!';
-        if (navigator.vibrate) {
-            navigator.vibrate(500);
-        }
         isAutoAdvance = false;
     }
 }
@@ -565,7 +559,7 @@ function onTimerTouchMove(event) {
         adjustTime(step);
         touchStartY = currentY;
         if (navigator.vibrate) {
-            navigator.vibrate(500);
+            navigator.vibrate(100);
         }
         event.preventDefault();
     }
