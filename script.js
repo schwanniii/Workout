@@ -236,7 +236,14 @@ function loadProgress() {
     }
 }
 
+function setViewportHeight() {
+    document.body.style.height = window.innerHeight + 'px';
+}
+
 function init() {
+    setViewportHeight();
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
     loadProgress();
     setupEventListeners();
     if (currentPerson && currentWorkout) {

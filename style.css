@@ -9,6 +9,7 @@ body {
     background-color: #f0f0f0;
     height: 100vh;
     overflow: hidden;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 #app {
