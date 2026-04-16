@@ -124,8 +124,52 @@ const data = {
                     einheiten: [
                         { name: "Aufwärmen", dauer: 300 },
 
-                        { name: "Übung1", dauer: 240 },
-                        { name: "Pause", dauer: 30 },
+                        // 1.Runde
+                        { name: "Windmills", dauer: 40 }, //Windmills
+                        { name: "Pause", dauer: 10 },
+                        { name: "Squats", dauer: 40 }, //Squats
+                        { name: "Pause", dauer: 10 },
+                        { name: "Inchworms", dauer: 40 }, //Inchworms
+                        { name: "Pause", dauer: 10 },
+                        { name: "Reverse Lunges", dauer: 40 }, //Reverse Lunges
+                        { name: "Pause", dauer: 10 },
+                        { name: "V-Ups", dauer: 40 }, //V-Ups
+                        { name: "Lange Pause", dauer: 60 },
+
+                        // 2.Runde
+                        { name: "Windmills", dauer: 40 }, //Windmills
+                        { name: "Pause", dauer: 10 },
+                        { name: "Squats", dauer: 40 }, //Squats
+                        { name: "Pause", dauer: 10 },
+                        { name: "Inchworms", dauer: 40 }, //Inchworms
+                        { name: "Pause", dauer: 10 },
+                        { name: "Reverse Lunges", dauer: 40 }, //Reverse Lunges
+                        { name: "Pause", dauer: 10 },
+                        { name: "V-Ups", dauer: 40 }, //V-Ups
+                        { name: "Lange Pause", dauer: 60 },
+
+                        // 3.Runde
+                        { name: "Windmills", dauer: 40 }, //Windmills
+                        { name: "Pause", dauer: 10 },
+                        { name: "Squats", dauer: 40 }, //Squats
+                        { name: "Pause", dauer: 10 },
+                        { name: "Inchworms", dauer: 40 }, //Inchworms
+                        { name: "Pause", dauer: 10 },
+                        { name: "Reverse Lunges", dauer: 40 }, //Reverse Lunges
+                        { name: "Pause", dauer: 10 },
+                        { name: "V-Ups", dauer: 40 }, //V-Ups
+                        { name: "Lange Pause", dauer: 60 },
+
+                        // 4.Runde
+                        { name: "Windmills", dauer: 40 }, //Windmills
+                        { name: "Pause", dauer: 10 },
+                        { name: "Squats", dauer: 40 }, //Squats
+                        { name: "Pause", dauer: 10 },
+                        { name: "Inchworms", dauer: 40 }, //Inchworms
+                        { name: "Pause", dauer: 10 },
+                        { name: "Reverse Lunges", dauer: 40 }, //Reverse Lunges
+                        { name: "Pause", dauer: 10 },
+                        { name: "V-Ups", dauer: 40 }, //V-Ups
 
                         { name: "Cooldown", dauer: 300 }
                     ]
@@ -221,6 +265,7 @@ function setupEventListeners() {
         showView('person-overview');
     });
     document.getElementById('back-to-workouts').addEventListener('click', () => {
+        stopTimer();
         localStorage.removeItem('workoutProgress');
         stopMotivationRotation();
         showView('workout-overview');
